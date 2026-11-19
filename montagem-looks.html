@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArmariON - Montagem de looks</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .campo-nome-conjunto { position: relative; margin-bottom: 20px; }
+    .campo-nome-conjunto label { display: block; font-size: 11px; font-weight: bold; margin-bottom: 6px; color: #30253b; }
+    .campo-nome-conjunto input { width: 100%; height: 44px; padding: 10px 38px 10px 14px; border: 1px solid #d9cce3; border-radius: 10px; background: white; font-size: 13px; color: #30253b; }
+    .campo-nome-conjunto span { position: absolute; right: 14px; bottom: 12px; color: #65358a; font-size: 16px; pointer-events: none; }
+    .caixa-composicao { border: 1.5px dashed #b9a4cc; background: #f3ecfa; border-radius: 16px; padding: 14px; margin-bottom: 22px; }
+    .topo-composicao { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; color: #65358a; font-size: 10px; font-weight: bold; letter-spacing: 0.8px; }
+    .grade-composicao { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+    .item-composicao { position: relative; height: 135px; border-radius: 12px; overflow: hidden; background: #eee7e0; }
+    .item-composicao img { width: 100%; height: 100%; object-fit: cover; }
+    .btn-mover { position: absolute; top: 8px; left: 8px; width: 22px; height: 22px; border-radius: 50%; background: rgba(255,255,255,0.9); color: #65358a; font-size: 11px; display: flex; align-items: center; justify-content: center; }
+    .btn-remover { position: absolute; top: 8px; right: 8px; width: 22px; height: 22px; border-radius: 50%; border: none; background: rgba(255,255,255,0.9); color: #30253b; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .dica-composicao { text-align: center; font-size: 11px; color: #704493; }
+    .secao-titulo { display: flex; justify-content: space-between; align-items: center; margin: 18px 0 12px; }
+    .secao-titulo h3 { font-family: Arial, sans-serif; font-size: 15px; font-weight: bold; margin: 0; }
+    .link-acervo { color: #65358a; font-size: 11px; font-weight: bold; text-decoration: none; }
+    .card-harmonia { background: #eee3f7; border-radius: 12px; padding: 13px 15px; margin-bottom: 10px; }
+    .card-harmonia strong { display: block; font-size: 12px; color: #65358a; margin-bottom: 4px; }
+    .card-harmonia p { font-size: 11px; color: #704493; }
+    .filtros-acervo { display: flex; gap: 8px; margin-bottom: 16px; overflow-x: auto; }
+    .pill-filtro { border: 1px solid #e2d8e9; background: white; color: #65358a; padding: 7px 14px; border-radius: 20px; font-size: 11px; font-weight: bold; cursor: pointer; }
+    .pill-filtro.ativo { background: #65358a; color: white; border-color: #65358a; }
+    .grade-acervo { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+    .peca-acervo { cursor: pointer; }
+    .peca-acervo-img { height: 105px; border-radius: 10px; overflow: hidden; background: #eee7e0; margin-bottom: 6px; }
+    .peca-acervo-img img { width: 100%; height: 100%; object-fit: cover; }
+    .peca-acervo strong { display: block; font-size: 11px; color: #30253b; }
+    .peca-acervo span { font-size: 10px; color: #89808f; }
+    .texto-instrucao { font-size: 11px; color: #89808f; margin-bottom: 18px; }
+  </style>
+</head>
+<body>
+  <div class="aplicativo">
+    <section class="tela ativa tela-app">
+      
+      <div class="barra-superior">
+        <button onclick="history.back()" aria-label="Voltar">←</button>
+        <span>ArmariON</span>
+        <button aria-label="Mais opções">•••</button>
+      </div>
+
+      <span class="destaque">ATELIÊ DE LOOKS</span>
+      <h2>Componha<br>do seu jeito.</h2>
+
+      <div class="campo-nome-conjunto">
+        <label for="nomeConjunto">Nome do conjunto</label>
+        <input type="text" id="nomeConjunto" value="Essencial de segunda">
+        <span>✎</span>
+      </div>
+
+      <div class="caixa-composicao">
+        <div class="topo-composicao">
+          <span id="contadorPecas">SUA COMPOSIÇÃO · 4 PEÇAS</span>
+          <span>✥</span>
+        </div>
+
+        <div class="grade-composicao" id="gradeComposicao">
+          <!-- Preenchido automaticamente pelo script -->
+        </div>
+
+        <p class="dica-composicao">Arraste as peças para cá. Segure para reorganizar.</p>
+      </div>
+
+      <div class="secao-titulo">
+        <h3>Uma combinação em harmonia</h3>
+      </div>
+
+      <div class="card-harmonia">
+        <strong style="display:flex;align-items:center;gap:6px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path></svg> Cores compatíveis</strong>
+        <p>Bege, cru e preto formam uma paleta neutra equilibrada.</p>
+      </div>
+
+      <div class="card-harmonia">
+        <strong style="display:flex;align-items:center;gap:6px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 7 17l-5-5"></path><path d="m22 10-7.5 7.5L13 16"></path></svg> Estilo alinhado · Trabalho</strong>
+        <p>Camisa e alfaiataria mantêm a formalidade. Look completo, com calçado e casaco.</p>
+      </div>
+      <div class="secao-titulo">
+        <h3>Escolha no seu acervo</h3>
+        <a href="pecas.html" class="link-acervo">Ver 48 peças</a>
+      </div>
+
+      <div class="filtros-acervo">
+        <button class="pill-filtro ativo" onclick="filtrarAcervo('todas', this)">Todas</button>
+        <button class="pill-filtro" onclick="filtrarAcervo('superiores', this)">Superiores</button>
+        <button class="pill-filtro" onclick="filtrarAcervo('inferiores', this)">Inferiores</button>
+        <button class="pill-filtro" onclick="filtrarAcervo('calcados', this)">Calçados</button>
+      </div>
+
+      <div class="grade-acervo" id="gradeAcervo">
+        <!-- Preenchido automaticamente pelo script -->
+      </div>
+
+      <p class="texto-instrucao">Arraste uma peça ou toque para adicioná-la. Toque no × para remover da composição.</p>
+
+      <button class="botao-principal" id="btnSalvar" onclick="salvarConjunto()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:6px;"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>Salvar conjunto
+      </button>
+
+    </section>
+
+    <nav class="menu-inferior visivel">
+      <button onclick="window.location.href='index.html'">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        Início
+      </button>
+      <button onclick="window.location.href='pecas.html'">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path></svg>
+        Peças
+      </button>
+      <button class="ativo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+        Looks
+        <span style="width: 4px; height: 4px; background: #65358a; border-radius: 50%; margin-top: 2px;"></span>
+      </button>
+      <button onclick="window.location.href='armario.html'">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="12" y1="2" x2="12" y2="22"></line><line x1="9" y1="11" x2="9" y2="13"></line><line x1="15" y1="11" x2="15" y2="13"></line></svg>
+        Armário
+      </button>
+      <button onclick="window.location.href='index.html'">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        Perfil
+      </button>
+    </nav>
+  </div>
+
+  <script>
+     const acervo = [
+      { id: 1, nome: 'Blazer de linho', info: 'Zara · M', cat: 'superiores', img: 'blazer.png', pos: 'center' },
+      { id: 2, nome: 'Camisa de algodão', info: 'COS · M', cat: 'superiores', img: 'camisa.png', pos: 'center' },
+      { id: 3, nome: 'Calça de alfaiataria', info: 'Zara · 38', cat: 'inferiores', img: 'calca.png', pos: 'center' },
+      { id: 4, nome: 'Mocassim de couro', info: 'Arezzo · 37', cat: 'calcados', img: 'mocassim.png', pos: 'center' },
+      { id: 5, nome: 'Tricô creme', info: 'Uniqlo · M', cat: 'superiores', img: 'trico.png', pos: 'center' },
+      { id: 6, nome: 'Jeans reto', info: 'Levi’s · 38', cat: 'inferiores', img: 'jeans.png', pos: 'center' }
+    ];
+
+    let composicao = new Array(1, 2, 3, 4);
+    let filtroAtual = 'todas';
+
+    function renderizar() {
+      const gradeComp = document.getElementById('gradeComposicao');
+      document.getElementById('contadorPecas').textContent = `SUA COMPOSIÇÃO · ${composicao.length} PEÇA${composicao.length === 1 ? '' : 'S'}`;
+
+      gradeComp.innerHTML = composicao.map(id => {
+        const p = acervo.find(item => item.id === id);
+        return `
+          <div class="item-composicao">
+            <img src="${p.img}" alt="${p.nome}" style="object-position: ${p.pos};">
+            <span class="btn-mover">⋮⋮</span>
+            <button class="btn-remover" onclick="removerPeca(${p.id})" aria-label="Remover">×</button>
+          </div>
+        `;
+      }).join('');
+
+      const gradeAc = document.getElementById('gradeAcervo');
+      const filtradas = filtroAtual === 'todas' ? acervo : acervo.filter(p => p.cat === filtroAtual);
+
+      gradeAc.innerHTML = filtradas.map(p => `
+        <div class="peca-acervo" onclick="adicionarPeca(${p.id})">
+          <div class="peca-acervo-img">
+            <img src="${p.img}" alt="${p.nome}" style="object-position: ${p.pos};">
+          </div>
+          <strong>${p.nome}</strong>
+          <span>${p.info}</span>
+        </div>
+      `).join('');
+    }
+
+    function removerPeca(id) {
+      composicao = composicao.filter(item => item !== id);
+      renderizar();
+    }
+
+    function adicionarPeca(id) {
+      if (!composicao.includes(id)) {
+        composicao.push(id);
+        renderizar();
+      }
+    }
+
+    function filtrarAcervo(cat, botao) {
+      filtroAtual = cat;
+      document.querySelectorAll('.pill-filtro').forEach(b => b.classList.remove('ativo'));
+      botao.classList.add('ativo');
+      renderizar();
+    }
+
+    function salvarConjunto() {
+      const btn = document.getElementById('btnSalvar');
+      btn.textContent = '✓ Conjunto salvo no Armário!';
+      setTimeout(() => { btn.textContent = '🔖 Salvar conjunto'; }, 2000);
+    }
+
+    renderizar();
+  </script>
+</body>
+</html>

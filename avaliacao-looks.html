@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArmariON - Avaliação de looks</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .card-foto-look { position: relative; width: 100%; height: 290px; border-radius: 16px; overflow: hidden; margin-bottom: 18px; background: #eee7e0; }
+    .card-foto-look img { width: 100%; height: 100%; object-fit: cover; }
+    .tag-look-topo { position: absolute; top: 14px; left: 14px; background: white; color: #65358a; padding: 6px 12px; border-radius: 20px; font-size: 10px; font-weight: bold; letter-spacing: 0.5px; }
+    .titulo-look-avaliacao { font-family: Georgia, serif; font-size: 26px; font-weight: normal; color: #30253b; margin-bottom: 14px; }
+    .lista-pecas-look { list-style: none; margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px; }
+    .lista-pecas-look li { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #30253b; }
+    .peca-nome { display: flex; align-items: center; gap: 8px; }
+    .peca-check { color: #65358a; font-weight: bold; }
+    .peca-marca { color: #89808f; font-size: 11px; }
+    .acoes-avaliacao { display: flex; gap: 12px; margin-bottom: 18px; }
+    .btn-avaliar { flex: 1; height: 46px; border-radius: 10px; border: 1.5px solid #e2d8e9; background: #eee3f7; color: #65358a; font-size: 13px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; transition: 0.2s; }
+    .btn-avaliar.ativo-gostei { background: #bd4b05; border-color: #bd4b05; color: white; }
+    .btn-avaliar.ativo-nao-gostei { background: #65358a; border-color: #65358a; color: white; }
+    .navegacao-sugestoes { display: flex; justify-content: space-between; align-items: center; margin: 20px 0 12px; font-size: 12px; }
+    .contador-sugestao { color: #89808f; }
+    .btn-proximo-look { border: none; background: transparent; color: #65358a; font-weight: bold; font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 4px; }
+    .nota-rodape { font-size: 11px; color: #89808f; line-height: 1.4; }
+  </style>
+</head>
+<body>
+  <div class="aplicativo">
+    <section class="tela ativa tela-app">
+      
+      <div class="barra-superior">
+        <button onclick="history.back()" aria-label="Voltar">←</button>
+        <span>ArmariON</span>
+        <button aria-label="Mais opções">•••</button>
+      </div>
+
+      <span class="destaque">SUA OPINIÃO VESTE A IA</span>
+      <h2>Tem a sua cara?</h2>
+      <p class="descricao">Cada avaliação ajuda a IA a entender seu estilo e personalizar os próximos looks.</p>
+
+      <div class="card-foto-look">
+        <img id="fotoLook" src="look1.jpg" alt="Essencial de segunda">
+        <span class="tag-look-topo" id="tagLook">TRABALHO · 16°C</span>
+      </div>
+
+      <h3 class="titulo-look-avaliacao" id="tituloLook">Essencial de segunda</h3>
+
+      <ul class="lista-pecas-look" id="listaPecas">
+        <li><span class="peca-nome"><span class="peca-check">✓</span> Blazer de linho</span><span class="peca-marca">Zara</span></li>
+        <li><span class="peca-nome"><span class="peca-check">✓</span> Camisa de algodão</span><span class="peca-marca">COS</span></li>
+        <li><span class="peca-nome"><span class="peca-check">✓</span> Calça de alfaiataria</span><span class="peca-marca">Zara</span></li>
+        <li><span class="peca-nome"><span class="peca-check">✓</span> Mocassim de couro</span><span class="peca-marca">Arezzo</span></li>
+      </ul>
+
+      <div class="acoes-avaliacao">
+        <button class="btn-avaliar" id="btnNaoGostei" onclick="avaliarLook('nao')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"></path></svg>
+          Não Gostei
+        </button>
+        <button class="btn-avaliar ativo-gostei" id="btnGostei" onclick="avaliarLook('sim')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+          Gostei
+        </button>
+      </div>
+      <div class="mensagem" style="margin-top: 0;">
+        <strong id="feedbackTitulo">♡ Preferência registrada ✓</strong>
+        <p id="feedbackDesc">Você gostou deste look. Vamos priorizar tons neutros e alfaiataria nas próximas sugestões.</p>
+      </div>
+
+      <div class="navegacao-sugestoes">
+        <span class="contador-sugestao" id="contadorSugestao">1 de 3 sugestões de hoje</span>
+        <button class="btn-proximo-look" onclick="proximoLook()">Próximo look →</button>
+      </div>
+
+      <p class="nota-rodape">Mudou de ideia? Toque em outra avaliação para atualizar sua preferência.</p>
+
+    </section>
+
+    <nav class="menu-inferior visivel">
+      <button onclick="window.location.href='index.html'">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        Início
+      </button>
+      <button onclick="window.location.href='pecas.html'">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path></svg>
+        Peças
+      </button>
+      <button class="ativo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+        Looks
+        <span style="width: 4px; height: 4px; background: #65358a; border-radius: 50%; margin-top: 2px;"></span>
+      </button>
+      <button onclick="window.location.href='armario.html'">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="12" y1="2" x2="12" y2="22"></line><line x1="9" y1="11" x2="9" y2="13"></line><line x1="15" y1="11" x2="15" y2="13"></line></svg>
+        Armário
+      </button>
+      <button onclick="window.location.href='index.html'">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        Perfil
+      </button>
+    </nav>
+  </div>
+
+  <script>
+    const looks = [
+      {
+        img: 'look1.jpg',
+        tag: 'TRABALHO · 16°C',
+        titulo: 'Essencial de segunda',
+        pecas: [
+          ['Blazer de linho', 'Zara'],
+          ['Camisa de algodão', 'COS'],
+          ['Calça de alfaiataria', 'Zara'],
+          ['Mocassim de couro', 'Arezzo']
+        ],
+        estilo: 'tons neutros e alfaiataria'
+      },
+      {
+        img: 'look2.jpg',
+        tag: 'CASUAL · 19°C',
+        titulo: 'Leveza urbana',
+        pecas: [
+          ['Tricô canelado', 'Renner'],
+          ['Calça jeans reta', 'Levi’s'],
+          ['Tênis branco minimal', 'Veja']
+        ],
+        estilo: 'combinações casuais e confortáveis'
+      },
+      {
+        img: 'look3.jpg',
+        tag: 'FESTA · 18°C',
+        titulo: 'Noite sofisticada',
+        pecas: [
+          ['Vestido midi acetinado', 'Farm'],
+          ['Jaqueta estruturada', 'Zara'],
+          ['Sandália de tiras', 'Schutz']
+        ],
+        estilo: 'peças marcantes e elegantes'
+      }
+    ];
+
+    let indiceAtual = 0;
+
+    function avaliarLook(voto) {
+      const btnGostei = document.getElementById('btnGostei');
+      const btnNaoGostei = document.getElementById('btnNaoGostei');
+      const feedbackTitulo = document.getElementById('feedbackTitulo');
+      const feedbackDesc = document.getElementById('feedbackDesc');
+      const estiloAtual = looks[indiceAtual].estilo;
+
+      btnGostei.classList.remove('ativo-gostei');
+      btnNaoGostei.classList.remove('ativo-nao-gostei');
+
+      if (voto === 'sim') {
+        btnGostei.classList.add('ativo-gostei');
+        feedbackTitulo.textContent = '♡ Preferência registrada ✓';
+        feedbackDesc.textContent = `Você gostou deste look. Vamos priorizar ${estiloAtual} nas próximas sugestões.`;
+      } else {
+        btnNaoGostei.classList.add('ativo-nao-gostei');
+        feedbackTitulo.textContent = '✕ Preferência atualizada ✓';
+        feedbackDesc.textContent = `Entendido! Vamos reduzir ${estiloAtual} e buscar outras combinações para você.`;
+      }
+    }
+
+    function proximoLook() {
+      indiceAtual = (indiceAtual + 1) % looks.length;
+      const item = looks[indiceAtual];
+
+      document.getElementById('fotoLook').src = item.img;
+      document.getElementById('tagLook').textContent = item.tag;
+      document.getElementById('tituloLook').textContent = item.titulo;
+      document.getElementById('contadorSugestao').textContent = `${indiceAtual + 1} de ${looks.length} sugestões de hoje`;
+
+      const lista = document.getElementById('listaPecas');
+      lista.innerHTML = item.pecas.map(p => 
+        `<li><span class="peca-nome"><span class="peca-check">✓</span> ${p[0]}</span><span class="peca-marca">${p[1]}</span></li>`
+      ).join('');
+
+      avaliarLook('sim');
+    }
+  </script>
+</body>
+</html>
