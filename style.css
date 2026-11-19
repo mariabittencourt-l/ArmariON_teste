@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -6,76 +5,85 @@
 }
 
 body {
-    background-color: #f8f5fc;
+    background: #eeeaf0;
     font-family: Arial, sans-serif;
     color: #30253b;
 }
 
-.tela-login {
+.aplicativo {
     width: 100%;
     max-width: 430px;
     min-height: 100vh;
     margin: auto;
-    padding: 35px 20px 25px;
+    background: #f8f5fc;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Cabeçalho */
+.tela {
+    display: none;
+    min-height: 100vh;
+    padding: 30px 22px 35px;
+}
 
-.cabecalho {
+.tela.ativa {
+    display: block;
+}
+
+h1, h2, h3 {
+    font-family: Georgia, serif;
+    font-weight: normal;
+}
+
+h2 {
+    font-size: 29px;
+    line-height: 1.05;
+    margin: 12px 0;
+}
+
+p {
+    line-height: 1.5;
+}
+
+.cabecalho, .cabecalho-login {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 35px;
 }
 
-.cabecalho h1 {
+.cabecalho h1, .cabecalho-login h1 {
     color: #65358a;
-    font-size: 21px;
+    font-size: 27px;
+    font-weight: bold;
 }
 
-.cabecalho span {
+.cabecalho span, .cabecalho-login span {
     color: #704493;
     font-size: 8px;
-    font-weight: bold;
     letter-spacing: 1.5px;
 }
 
-/* Fotografia */
-
-.imagem-principal {
+.imagem-login {
     width: 100%;
     height: 182px;
     object-fit: cover;
     border-radius: 12px;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
 }
-
-/* Apresentação */
 
 .destaque {
     color: #8b7b96;
     font-size: 9px;
     font-weight: bold;
-    letter-spacing: 1px;
+    letter-spacing: 1.2px;
 }
 
-.apresentacao h2 {
-    font-family: Georgia, serif;
-    font-size: 30px;
-    font-weight: normal;
-    line-height: 1.05;
-    margin-top: 16px;
-    margin-bottom: 12px;
-}
-
-.apresentacao p {
+.descricao {
     color: #89808f;
     font-size: 12px;
-    line-height: 1.5;
-    margin-bottom: 20px;
+    margin: 12px 0 22px;
 }
-
-/* Formulário */
 
 form label {
     display: block;
@@ -84,36 +92,36 @@ form label {
     margin-bottom: 7px;
 }
 
-form > input {
+form > input,
+.campo-icone input {
     width: 100%;
-    height: 39px;
-    border: 1px solid #e0d7e8;
-    border-radius: 7px;
-    background: #fff;
+    height: 42px;
     padding: 10px;
-    margin-bottom: 17px;
-    font-size: 12px;
+    border: 1px solid #d9cce3;
+    border-radius: 7px;
+    background: white;
+    color: #30253b;
+    font-size: 11px;
+    margin-bottom: 15px;
 }
 
-form > input:focus {
+form input:focus {
     outline: none;
     border-color: #704493;
 }
-
-/* Opções */
 
 .opcoes {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: -5px;
-    margin-bottom: 18px;
+    margin: 0 0 18px;
 }
 
 .opcoes .manter {
     display: flex;
     align-items: center;
     gap: 5px;
+    font-weight: normal;
     font-size: 9px;
 }
 
@@ -121,70 +129,597 @@ form > input:focus {
     accent-color: #65358a;
 }
 
-.opcoes a {
+.opcoes a, footer a {
     color: #704493;
-    font-size: 9px;
-    text-decoration: none;
+    font-size: 10px;
     font-weight: bold;
+    text-decoration: none;
 }
 
-/* Botão */
-
-button {
+.botao-principal {
     width: 100%;
-    height: 43px;
-    background: #bd4b05;
-    color: white;
+    min-height: 42px;
     border: none;
     border-radius: 7px;
-    font-size: 13px;
+    background: #bd4b05;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
     cursor: pointer;
 }
 
-button:hover {
+.botao-principal:hover {
     background: #a63e00;
 }
 
-/* Mensagem */
-
 .mensagem {
-    background: #eee3f7;
-    padding: 14px;
+    margin-top: 18px;
+    padding: 15px;
     border-radius: 9px;
-    margin-top: 15px;
+    background: #eee3f7;
     color: #704493;
 }
 
 .mensagem strong {
-    font-size: 10px;
+    font-size: 11px;
 }
 
 .mensagem p {
-    font-size: 9px;
-    line-height: 1.5;
-    margin-top: 6px;
+    margin-top: 7px;
+    font-size: 10px;
 }
 
-/* Rodapé */
-
 footer {
+    margin-top: 25px;
     text-align: center;
-    margin-top: 24px;
 }
 
 footer p {
     font-size: 10px;
-    color: #89808f;
-    margin-bottom: 22px;
-}
-
-footer a {
-    color: #704493;
-    font-weight: bold;
-    text-decoration: none;
+    margin-bottom: 16px;
 }
 
 footer span {
-    font-size: 8px;
     color: #99909e;
+    font-size: 8px;
+}
+
+.erro {
+    color: #bd4b05;
+    font-size: 10px;
+    min-height: 14px;
+    margin: 5px 0;
+}
+
+.link-botao {
+    margin-top: 12px;
+    border: none;
+    background: transparent;
+    color: #704493;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.forca-legenda {
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    color: #8b7b96;
+    margin: -5px 0 8px;
+}
+
+.forca-senha {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.forca-senha span {
+    flex: 1;
+    height: 4px;
+    border-radius: 4px;
+    background: #ded5e5;
+}
+
+.forca-senha span.ativa {
+    background: #65358a;
+}
+
+.requisitos {
+    list-style: none;
+    font-size: 10px;
+    color: #704493;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.termos {
+    color: #89808f;
+    font-size: 9px;
+    margin-bottom: 15px;
+}
+
+.termos a {
+    color: #704493;
+}
+
+.botao-voltar, .botao-lilas {
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 7px;
+    background: #eee3f7;
+    color: #65358a;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.botao-voltar {
+    margin-top: 18px;
+}
+
+.validade {
+    margin-top: 10px;
+    font-size: 10px;
+    color: #65358a;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+
+/* INÍCIO */
+
+.tela-app {
+    padding: 25px 13px 90px;
+}
+
+.topo-inicio {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 9px 20px;
+}
+
+.data-pequena {
+    color: #8b7b96;
+    font-size: 8px;
+    letter-spacing: 1px;
+}
+
+.topo-inicio h2 {
+    font-size: 25px;
+    margin: 7px 0 0;
+}
+
+.avatar-pequeno {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.clima {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 14px;
+    margin: 0 0 20px;
+    border-radius: 12px;
+    background: #542b7c;
+    color: white;
+}
+
+.temperatura {
+    font-family: Georgia, serif;
+    font-size: 23px;
+    text-align: center;
+}
+
+.clima strong {
+    font-size: 9px;
+}
+
+.clima p {
+    margin-top: 5px;
+    font-size: 9px;
+}
+
+.titulo-inicio {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.titulo-inicio h2 {
+    font-size: 25px;
+}
+
+.titulo-inicio p {
+    color: #89808f;
+    font-size: 10px;
+}
+
+.brilho {
+    color: #704493;
+    font-size: 24px;
+}
+
+.acoes-inicio {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.acoes-inicio button {
+    flex: 1;
+    font-size: 10px;
+}
+
+.botao-secundario {
+    border: none;
+    border-radius: 7px;
+    background: #eee3f7;
+    color: #65358a;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.card-look {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    box-shadow: 0 3px 12px rgba(70, 40, 90, 0.06);
+}
+
+.imagem-look {
+    height: 210px;
+    position: relative;
+    background: #eee7e0;
+}
+
+.imagem-look img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.etiqueta {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: white;
+    color: #65358a;
+    padding: 6px 9px;
+    border-radius: 15px;
+    font-size: 8px;
+    font-weight: bold;
+}
+
+.favorito {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 29px;
+    height: 29px;
+    border: none;
+    border-radius: 50%;
+    background: white;
+    color: #65358a;
+    font-size: 19px;
+    cursor: pointer;
+}
+
+.favorito.marcado {
+    color: #bd4b05;
+}
+
+.conteudo-look {
+    padding: 13px;
+}
+
+.categoria {
+    color: #704493;
+    font-size: 8px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.conteudo-look h3 {
+    margin: 8px 0;
+    font-size: 21px;
+}
+
+.conteudo-look p {
+    color: #89808f;
+    font-size: 10px;
+    margin-bottom: 8px;
+}
+
+.conteudo-look .detalhes-look {
+    font-size: 9px;
+}
+
+.rodape-look {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    color: #704493;
+    font-size: 9px;
+}
+
+.avaliar {
+    color: #65358a;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.rodape-inspiracao {
+    margin: 20px 9px;
+    color: #89808f;
+    font-size: 9px;
+}
+
+.rodape-inspiracao strong {
+    color: #704493;
+    font-size: 8px;
+    letter-spacing: 1px;
+}
+
+.rodape-inspiracao p {
+    margin-top: 7px;
+}
+
+
+/* PERFIL */
+
+.barra-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+    color: #704493;
+}
+
+.barra-superior span {
+    font-size: 9px;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.barra-superior button {
+    border: none;
+    background: transparent;
+    color: #704493;
+    cursor: pointer;
+}
+
+.perfil-pessoa {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin: 18px 0 25px;
+}
+
+.foto-perfil {
+    width: 58px;
+    height: 58px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.perfil-pessoa strong {
+    font-size: 11px;
+}
+
+.perfil-pessoa p {
+    margin: 5px 0;
+    color: #89808f;
+    font-size: 9px;
+}
+
+.link-foto {
+    color: #65358a;
+    font-size: 9px;
+    cursor: pointer;
+}
+
+.campo-icone {
+    position: relative;
+}
+
+.campo-icone input {
+    padding-right: 35px;
+}
+
+.campo-icone span {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    color: #704493;
+}
+
+.texto-atual {
+    color: #89808f;
+    font-size: 8px;
+    margin: -9px 0 13px;
+}
+
+.aviso-email {
+    padding: 12px;
+    border-radius: 8px;
+    background: #eee3f7;
+    color: #65358a;
+    margin-bottom: 17px;
+}
+
+.aviso-email strong {
+    font-size: 9px;
+}
+
+.aviso-email p {
+    font-size: 8px;
+    margin-top: 5px;
+}
+
+.botao-lilas {
+    margin: 0 0 25px;
+}
+
+.tela-app h3 {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 17px 0 8px;
+}
+
+.texto-ajuda {
+    color: #89808f;
+    font-size: 9px;
+    margin-bottom: 10px;
+}
+
+.estilos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 24px;
+}
+
+.estilo {
+    border: 1px solid #e2d8e9;
+    border-radius: 20px;
+    padding: 7px 10px;
+    background: white;
+    color: #65358a;
+    font-size: 9px;
+    cursor: pointer;
+}
+
+.estilo.selecionado {
+    background: #65358a;
+    color: white;
+}
+
+.configuracao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 16px 0;
+}
+
+.configuracao strong {
+    font-size: 9px;
+}
+
+.configuracao p {
+    color: #89808f;
+    font-size: 8px;
+    margin-top: 4px;
+}
+
+.interruptor input {
+    display: none;
+}
+
+.interruptor span {
+    display: block;
+    width: 37px;
+    height: 20px;
+    border-radius: 20px;
+    background: #c9bdcf;
+    position: relative;
+    cursor: pointer;
+}
+
+.interruptor span::after {
+    content: "";
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: 0.2s;
+}
+
+.interruptor input:checked + span {
+    background: #65358a;
+}
+
+.interruptor input:checked + span::after {
+    left: 20px;
+}
+
+.sair-conta {
+    display: block;
+    margin: 20px auto;
+    border: none;
+    background: transparent;
+    color: #89808f;
+    font-size: 9px;
+    cursor: pointer;
+}
+
+
+/* MENU INFERIOR */
+
+.menu-inferior {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 430px;
+    height: 62px;
+    background: white;
+    border-top: 1px solid #eee7f1;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 10;
+}
+
+.menu-inferior.visivel {
+    display: flex;
+}
+
+.menu-inferior button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    border: none;
+    background: transparent;
+    color: #89808f;
+    font-size: 8px;
+    cursor: pointer;
+}
+
+.menu-inferior button span {
+    font-size: 19px;
+}
+
+.menu-inferior button.ativo {
+    color: #65358a;
+}
+
+@media (max-width: 360px) {
+    .tela {
+        padding: 24px 17px;
+    }
+
+    .imagem-look {
+        height: 180px;
+    }
+
+    .topo-inicio h2 {
+        font-size: 22px;
+    }
 }

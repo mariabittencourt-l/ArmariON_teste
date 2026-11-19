@@ -1,114 +1,413 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>ArmariON</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <main class="tela-login">
+<main class="aplicativo">
 
-        <!-- Cabeçalho -->
+    <!-- LOGIN -->
+    <section class="tela ativa" id="login">
+        <header class="cabecalho-login">
+            <h1>ArmariON</h1>
+            <span>SEU ESTILO. EM SINTONIA.</span>
+        </header>
+
+        <img src="imagens/fotografia-editorial.png"
+             alt="Combinação de roupas"
+             class="imagem-login">
+
+        <span class="destaque">MENOS ESCOLHAS. MAIS VOCÊ.</span>
+        <h2>Seu estilo, em<br>boa companhia.</h2>
+        <p class="descricao">
+            Um novo jeito de vestir o que você já tem.
+            Entre no seu armário inteligente.
+        </p>
+
+        <form id="formLogin">
+            <label for="loginEmail">E-mail</label>
+            <input type="email" id="loginEmail"
+                   placeholder="Digite seu e-mail" required>
+
+            <label for="loginSenha">Senha</label>
+            <input type="password" id="loginSenha"
+                   placeholder="Digite sua senha" required>
+
+            <div class="opcoes">
+                <label class="manter">
+                    <input type="checkbox">
+                    Manter sessão ativa
+                </label>
+                <a href="#" data-tela="recuperacao">Esqueci minha senha</a>
+            </div>
+
+            <p class="erro" id="erroLogin"></p>
+            <button class="botao-principal" type="submit">➜ Entrar</button>
+        </form>
+
+        <div class="mensagem">
+            <strong>ϟ Acesso rápido, sem complicar</strong>
+            <p>Entre no seu armário inteligente e descubra novas combinações para o seu estilo.</p>
+        </div>
+
+        <footer>
+            <p>Primeira vez aqui?
+                <a href="#" data-tela="cadastro">Criar minha conta</a>
+            </p>
+            <span>Seu guarda-roupa, seus dados. Sempre protegidos.</span>
+        </footer>
+    </section>
+
+
+    <!-- CADASTRO -->
+    <section class="tela" id="cadastro">
         <header class="cabecalho">
             <h1>ArmariON</h1>
             <span>SEU ESTILO. EM SINTONIA.</span>
         </header>
 
-        <!-- Imagem principal -->
-        <img
-    src="./imagens/fotografia-editorial.png.png"
-    alt="Combinação de roupas"
-    class="imagem-principal"
->
+        <span class="destaque">COMECE SUA EXPERIÊNCIA</span>
+        <h2>Seu estilo<br>começa aqui.</h2>
+        <p class="descricao">
+            Crie sua conta e deixe seu guarda-roupa trabalhar junto com você.
+        </p>
 
-        <!-- Apresentação -->
-        <section class="apresentacao">
+        <form id="formCadastro">
+            <label for="cadastroNome">Nome completo</label>
+            <input id="cadastroNome" type="text"
+                   placeholder="Digite seu nome" required>
 
-            <span class="destaque">
-                MENOS ESCOLHAS. MAIS VOCÊ.
-            </span>
+            <label for="cadastroEmail">E-mail</label>
+            <input id="cadastroEmail" type="email"
+                   placeholder="Digite seu e-mail" required>
 
-            <h2>Seu estilo, em<br>boa companhia.</h2>
+            <label for="cadastroSenha">Criar senha</label>
+            <input id="cadastroSenha" type="password"
+                   placeholder="Crie uma senha" required>
 
-            <p>
-                Um novo jeito de vestir o que você já tem.
-                Entre no seu armário inteligente.
-            </p>
-
-        </section>
-
-        <!-- Formulário de login -->
-        <form id="formLogin">
-
-            <label for="email">E-mail</label>
-
-            <input
-                type="email"
-                id="email"
-                placeholder="Digite seu e-mail"
-                required
-            >
-
-            <label for="senha">Senha</label>
-
-            <input
-                type="password"
-                id="senha"
-                placeholder="Digite sua senha"
-                required
-            >
-
-            <div class="opcoes">
-
-                <label class="manter">
-                    <input type="checkbox">
-                    Manter sessão ativa
-                </label>
-
-                <a href="#">Esqueci minha senha</a>
-
+            <div class="forca-legenda">
+                <span>Força da senha</span>
+                <strong id="forcaTexto">Digite sua senha</strong>
+            </div>
+            <div class="forca-senha">
+                <span id="barra1"></span>
+                <span id="barra2"></span>
+                <span id="barra3"></span>
             </div>
 
-            <button type="submit">➜ Entrar</button>
+            <ul class="requisitos">
+                <li id="reqTamanho">✓ Pelo menos 8 caracteres</li>
+                <li id="reqNumero">✓ Letras e números</li>
+            </ul>
 
+            <label for="confirmarSenha">Confirmar senha</label>
+            <input id="confirmarSenha" type="password"
+                   placeholder="Digite novamente sua senha" required>
+
+            <p class="erro" id="erroCadastro"></p>
+
+            <p class="termos">
+                Ao criar sua conta, você concorda com nossos
+                <a href="#">Termos de Uso</a> e
+                <a href="#">Política de Privacidade</a>.
+            </p>
+
+            <button class="botao-principal" type="submit">
+                Criar minha conta
+            </button>
         </form>
 
-        <!-- Mensagem informativa -->
-        <section class="mensagem">
+        <div class="mensagem" id="sucessoCadastro" hidden>
+            <strong>Conta criada com sucesso!</strong>
+            <p>Agora você já pode entrar no ArmariON.</p>
+            <button class="link-botao" data-tela="login">Ir para o login</button>
+        </div>
 
-            <strong>ϟ Acesso rápido, sem complicar</strong>
-
-            <p>
-                Ao entrar: validando sua conta...
-                Meta de resposta: menos de 2 segundos.
-            </p>
-
-        </section>
-
-        <!-- Cadastro -->
         <footer>
-
-            <p>
-                Primeira vez aqui?
-                <a href="#">Criar minha conta</a>
+            <p>Já possui uma conta?
+                <a href="#" data-tela="login">Fazer login</a>
             </p>
-
-            <span>
-                Seu guarda-roupa, seus dados. Sempre protegidos.
-            </span>
-
         </footer>
+    </section>
 
-    </main>
 
-    <script src="script.js"></script>
+    <!-- RECUPERAÇÃO DE SENHA -->
+    <section class="tela" id="recuperacao">
+        <header class="cabecalho">
+            <h1>ArmariON</h1>
+            <span>SEU ESTILO. EM SINTONIA.</span>
+        </header>
 
+        <span class="destaque">RECUPERAÇÃO DE ACESSO</span>
+        <h2>Vamos recuperar<br>seu acesso?</h2>
+        <p class="descricao">
+            Informe seu e-mail para iniciar a recuperação da sua senha.
+        </p>
+
+        <form id="formRecuperacao">
+            <label for="recuperacaoEmail">E-mail cadastrado</label>
+            <input id="recuperacaoEmail" type="email"
+                   placeholder="Digite seu e-mail" required>
+
+            <p class="erro" id="erroRecuperacao"></p>
+            <button class="botao-principal" type="submit">
+                Enviar instruções
+            </button>
+        </form>
+
+        <div class="mensagem" id="sucessoRecuperacao" hidden>
+            <strong>Solicitação registrada!</strong>
+            <p>
+                Esta é uma demonstração. Nenhum e-mail real foi enviado.
+            </p>
+            <p id="emailDestino"></p>
+            <p class="validade">Link demonstrativo:
+                <strong id="contador">15:00</strong>
+            </p>
+            <button class="link-botao" id="reenviar" type="button">
+                Reenviar solicitação
+            </button>
+        </div>
+
+        <button class="botao-voltar" data-tela="login">
+            Voltar ao login
+        </button>
+    </section>
+
+
+    <!-- INÍCIO -->
+    <section class="tela tela-app" id="inicio">
+
+        <header class="topo-inicio">
+            <div>
+                <span class="data-pequena">SEGUNDA-FEIRA, 09 DE NOVEMBRO</span>
+                <h2>Bom dia, <span id="nomeInicio">Fulana</span></h2>
+            </div>
+            <img src="imagens/avatar.jpg" alt="Foto de perfil"
+                 class="avatar-pequeno">
+        </header>
+
+        <div class="clima">
+            <div class="temperatura">☀<br>16°</div>
+            <div>
+                <strong>São Paulo · 14° / 21°</strong>
+                <p>Um dia fresco pede camadas. Selecionamos looks com casaco para você.</p>
+            </div>
+        </div>
+
+        <div class="titulo-inicio">
+            <div>
+                <h2>Vista possibilidades.</h2>
+                <p>Três combinações com o que já é seu. Pensadas pela IA, escolhidas por você.</p>
+            </div>
+            <span class="brilho">✧</span>
+        </div>
+
+        <div class="acoes-inicio">
+            <button class="botao-secundario" id="filtrarLooks">
+                ☷ Filtrar looks
+            </button>
+            <button class="botao-principal" id="criarLook">
+                ＋ Criar look
+            </button>
+        </div>
+
+        <article class="card-look">
+            <div class="imagem-look">
+                <img src="imagens/look1.jpg" alt="Look de trabalho">
+                <span class="etiqueta">✿ ESCOLHA DO DIA</span>
+                <button class="favorito" aria-label="Favoritar look">♡</button>
+            </div>
+            <div class="conteudo-look">
+                <span class="categoria">TRABALHO · ALFAIATARIA</span>
+                <h3>Essencial de segunda</h3>
+                <p>Linhas limpas para reuniões e novos começos.</p>
+                <p class="detalhes-look">Blazer de linho · Camisa de algodão · Calça de alfaiataria · Mocassim de couro</p>
+                <div class="rodape-look">
+                    <span>♨ Com casaco · ideal a 16°C</span>
+                    <a href="#" class="avaliar">Avaliar ↗</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="card-look">
+            <div class="imagem-look">
+                <img src="imagens/look2.jpg" alt="Look casual">
+                <span class="etiqueta">✿ CURADORIA IA</span>
+                <button class="favorito" aria-label="Favoritar look">♡</button>
+            </div>
+            <div class="conteudo-look">
+                <span class="categoria">CASUAL · CAFÉ E PASSEIO</span>
+                <h3>Pausa na cidade</h3>
+                <p>Tricô macio e denim, em uma camada extra.</p>
+                <p class="detalhes-look">Blazer de linho · Tricô creme · Jeans reto · Mocassim de couro</p>
+                <div class="rodape-look">
+                    <span>♨ Com casaco · ideal a 16°C</span>
+                    <a href="#" class="avaliar">Avaliar ↗</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="card-look">
+            <div class="imagem-look">
+                <img src="imagens/look3.jpg" alt="Look para jantar">
+                <span class="etiqueta">✿ CURADORIA IA</span>
+                <button class="favorito" aria-label="Favoritar look">♡</button>
+            </div>
+            <div class="conteudo-look">
+                <span class="categoria">JANTAR · CASUAL ELEGANTE</span>
+                <h3>Depois das seis</h3>
+                <p>Tons neutros que atravessam o dia até a noite.</p>
+                <p class="detalhes-look">Blazer de linho · Tricô creme · Calça de alfaiataria · Mocassim</p>
+                <div class="rodape-look">
+                    <span>♨ Com casaco · ideal a 16°C</span>
+                    <a href="#" class="avaliar">Avaliar ↗</a>
+                </div>
+            </div>
+        </article>
+
+        <div class="rodape-inspiracao">
+            <strong>ESTILO EM SINTONIA COM O TEMPO</strong>
+            <p>Acima de 18°C, incluímos casacos. Acima de 25°C, priorizamos roupas leves. Suas avaliações ajudam a deixar cada sugestão mais sua.</p>
+        </div>
+    </section>
+
+
+    <!-- PERFIL -->
+    <section class="tela tela-app" id="perfil">
+
+        <header class="barra-superior">
+            <button class="voltar" data-tela="inicio">←</button>
+            <span>ArmariON</span>
+            <button class="mais">•••</button>
+        </header>
+
+        <span class="destaque">PERFIL E CONFIGURAÇÕES</span>
+        <h2>O seu jeito<br>de vestir.</h2>
+
+        <div class="perfil-pessoa">
+            <img src="imagens/avatar.jpg" alt="Foto de perfil"
+                 class="foto-perfil">
+            <div>
+                <strong id="nomePerfil">Fulana de Tal</strong>
+                <p>Seu estilo evolui com você.</p>
+                <label class="link-foto" for="alterarFoto">
+                    Alterar foto de perfil
+                </label>
+                <input type="file" id="alterarFoto"
+                       accept="image/*" hidden>
+            </div>
+        </div>
+
+        <form id="formPerfil">
+
+            <label for="perfilNome">Nome</label>
+            <div class="campo-icone">
+                <input id="perfilNome" type="text"
+                       value="Fulana de Tal">
+                <span>✎</span>
+            </div>
+
+            <label for="perfilEmail">Novo e-mail</label>
+            <div class="campo-icone">
+                <input id="perfilEmail" type="email"
+                       value="fulana.detal@email.com">
+                <span>✉</span>
+            </div>
+
+            <p class="texto-atual">Atual: marina.costa@email.com</p>
+
+            <div class="aviso-email">
+                <strong>♧ Confirme a alteração do e-mail</strong>
+                <p>Enviamos um código para o novo endereço. Seu e-mail atual permanece ativo até a confirmação.</p>
+            </div>
+
+            <label for="codigoVerificacao">Código de verificação</label>
+            <div class="campo-icone">
+                <input id="codigoVerificacao" type="text"
+                       placeholder="4 8 2 6 9 1" maxlength="6">
+                <span>⚿</span>
+            </div>
+
+            <button type="button" class="botao-lilas"
+                    id="confirmarEmail">
+                Confirmar novo e-mail
+            </button>
+
+            <h3>O que combina com você?</h3>
+            <p class="texto-ajuda">Escolha mais de um estilo para refinar suas sugestões.</p>
+
+            <div class="estilos">
+                <button type="button" class="estilo selecionado">Minimalista</button>
+                <button type="button" class="estilo selecionado">Clássico</button>
+                <button type="button" class="estilo selecionado">Casual</button>
+                <button type="button" class="estilo">Romântico</button>
+                <button type="button" class="estilo">Criativo</button>
+                <button type="button" class="estilo">Esportivo</button>
+            </div>
+
+            <h3>No seu dia a dia</h3>
+
+            <div class="configuracao">
+                <div>
+                    <strong>Sugestões diárias</strong>
+                    <p>Novos looks todas as manhãs</p>
+                </div>
+                <label class="interruptor">
+                    <input type="checkbox" checked>
+                    <span></span>
+                </label>
+            </div>
+
+            <div class="configuracao">
+                <div>
+                    <strong>Registro automático</strong>
+                    <p>Salvar o look usado no histórico</p>
+                </div>
+                <label class="interruptor">
+                    <input type="checkbox" checked>
+                    <span></span>
+                </label>
+            </div>
+
+            <p class="erro" id="erroPerfil"></p>
+            <button class="botao-principal" type="submit">
+                ✓ Salvar alterações
+            </button>
+        </form>
+
+        <button class="sair-conta" id="sairConta">
+            Sair da minha conta
+        </button>
+    </section>
+
+
+    <!-- MENU INFERIOR -->
+    <nav class="menu-inferior" id="menuInferior">
+        <button data-tela="inicio">
+            <span>⌂</span>Início
+        </button>
+        <button id="menuPecas">
+            <span>♧</span>Peças
+        </button>
+        <button id="menuLooks">
+            <span>◇</span>Looks
+        </button>
+        <button id="menuArmario">
+            <span>▤</span>Armário
+        </button>
+        <button data-tela="perfil">
+            <span>♙</span>Perfil
+        </button>
+    </nav>
+
+</main>
+
+<script src="script.js"></script>
 </body>
 </html>
