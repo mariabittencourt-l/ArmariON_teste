@@ -387,26 +387,24 @@
         </button>
     </section>
 
-
-    <!-- MENU INFERIOR -->
-    <nav class="menu-inferior" id="menuInferior">
-        <button data-tela="inicio">
-            <span>⌂</span>Início
-        </button>
-        <button id="menuPecas">
-            <span>♧</span>Peças
-        </button>
-        <button id="menuLooks" onclick="window.location.href='meus-looks.html'">
-            <span>◇</span>Looks
-        </button>
-        <button id="menuArmario">
-            <span>▤</span>Armário
-        </button>
-        <button data-tela="perfil">
-            <span>♙</span>Perfil
-        </button>
-    </nav>
-
+<!-- MENU INFERIOR -->
+<nav class="menu-inferior" id="menuInferior">
+    <button type="button" onclick="abrirTela('inicio')">
+        <span>⌂</span>Início
+    </button>
+    <button type="button" id="menuPecas" onclick="window.location.href='pecas.html'">
+        <span>♧</span>Peças
+    </button>
+    <button type="button" id="menuLooks" onclick="window.location.href='meus-looks.html'">
+        <span>◇</span>Looks
+    </button>
+    <button type="button" id="menuArmario" onclick="window.location.href='armario.html'">
+        <span>▤</span>Armário
+    </button>
+    <button type="button" onclick="abrirTela('perfil')">
+        <span>♙</span>Perfil
+    </button>
+</nav>
 </main>
 
 <script src="script.js"></script>

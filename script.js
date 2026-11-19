@@ -291,26 +291,26 @@ document.querySelectorAll(".favorito").forEach(botao => {
 // BOTÕES DA TELA INICIAL
 
 document.getElementById("filtrarLooks").addEventListener("click", function() {
-    alert("Em breve você poderá filtrar os looks por ocasião e estilo!");
+    window.location.href = "filtros-looks.html";
 });
 
 document.getElementById("criarLook").addEventListener("click", function() {
-    alert("Em breve você poderá criar novas combinações!");
+    window.location.href = "montagem-looks.html";
 });
 
 
 // MENU INFERIOR
 
 document.getElementById("menuPecas").addEventListener("click", function() {
-    alert("Área de peças em desenvolvimento.");
+    window.location.href = "pecas.html";
 });
 
 document.getElementById("menuLooks").addEventListener("click", function() {
-    mostrarTela("inicio");
+    window.location.href = "meus-looks.html";
 });
 
 document.getElementById("menuArmario").addEventListener("click", function() {
-    alert("Área do armário em desenvolvimento.");
+    window.location.href = "armario.html";
 });
 
 
