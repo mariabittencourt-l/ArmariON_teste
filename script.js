@@ -299,7 +299,7 @@ document.getElementById("criarLook").addEventListener("click", function() {
 });
 
 
-// MENU INFERIOR
+// MENU INFERIOR (Páginas externas)
 
 document.getElementById("menuPecas").addEventListener("click", function() {
     window.location.href = "pecas.html";
